@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import SectionReveal from "./SectionReveal";
+
 export default function FAQ() {
   const faqs = [
     {
@@ -21,18 +24,29 @@ export default function FAQ() {
   return (
     <section id="faq" className="relative py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-center">Frequently asked questions</h2>
-        <div className="mt-10 divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white">
-          {faqs.map((f) => (
-            <details key={f.q} className="group p-6">
-              <summary className="flex cursor-pointer list-none items-center justify-between text-gray-900 font-medium">
-                {f.q}
-                <span className="ml-4 text-gray-400 group-open:rotate-180 transition">⌄</span>
-              </summary>
-              <p className="mt-3 text-sm text-gray-600">{f.a}</p>
-            </details>
-          ))}
-        </div>
+        <SectionReveal>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-center">Frequently asked questions</h2>
+        </SectionReveal>
+        <SectionReveal delay={0.06}>
+          <div className="mt-10 divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white">
+            {faqs.map((f, i) => (
+              <motion.details
+                key={f.q}
+                className="group p-6"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between text-gray-900 font-medium">
+                  {f.q}
+                  <span className="ml-4 text-gray-400 group-open:rotate-180 transition-base">⌄</span>
+                </summary>
+                <p className="mt-3 text-sm text-gray-600">{f.a}</p>
+              </motion.details>
+            ))}
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );

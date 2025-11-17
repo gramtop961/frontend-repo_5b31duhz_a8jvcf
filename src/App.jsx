@@ -6,7 +6,7 @@ import FAQ from './components/FAQ'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white text-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white text-gray-900 selection:bg-blue-600/10 selection:text-blue-700">
       <Navbar />
       <main>
         <Hero />
